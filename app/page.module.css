@@ -1,0 +1,507 @@
+/* ─── Landing Page ─── */
+
+.page {
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Navbar ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  background-color: rgba(18, 18, 18, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navLogo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-base);
+  letter-spacing: -0.5px;
+}
+
+.navLogo span {
+  color: var(--accent);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navLink {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.navLink:hover {
+  color: var(--text-base);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.navCta {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
+  background-color: var(--accent);
+  padding: 8px 24px;
+  border-radius: var(--radius-pill-lg);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.navCta:hover {
+  background-color: #1fdf64;
+  transform: scale(1.02);
+}
+
+/* ─── Hero ─── */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(30, 215, 96, 0.08) 0%,
+      transparent 70%
+    ),
+    var(--bg-base);
+  pointer-events: none;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: rgba(30, 215, 96, 0.1);
+  border: 1px solid rgba(30, 215, 96, 0.2);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.heroTitle {
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  color: var(--text-base);
+  max-width: 800px;
+  position: relative;
+}
+
+.heroTitle span {
+  color: var(--accent);
+}
+
+.heroSubtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 400;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin-top: 20px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+}
+
+.btnPrimary {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
+  background-color: var(--accent);
+  padding: 14px 36px;
+  border-radius: var(--radius-pill-lg);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnPrimary:hover {
+  background-color: #1fdf64;
+  transform: scale(1.02);
+}
+
+.btnOutline {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-base);
+  background-color: transparent;
+  border: 1px solid var(--border-light);
+  padding: 14px 36px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.btnOutline:hover {
+  border-color: var(--text-base);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.heroStats {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 64px;
+  position: relative;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-base);
+  letter-spacing: -0.5px;
+}
+
+.statLabel {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+.statDivider {
+  width: 1px;
+  height: 40px;
+  background-color: var(--border);
+}
+
+/* ─── Features ─── */
+.features {
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sectionLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-base);
+  letter-spacing: -0.5px;
+  margin-bottom: 48px;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.featureCard {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-card);
+  padding: 28px;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.featureCard:hover {
+  background-color: var(--bg-elevated);
+  box-shadow: var(--shadow-medium);
+}
+
+.featureIcon {
+  width: 44px;
+  height: 44px;
+  background-color: rgba(30, 215, 96, 0.1);
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.featureTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-base);
+  margin-bottom: 8px;
+}
+
+.featureDesc {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ─── How It Works ─── */
+.howItWorks {
+  padding: 80px 40px;
+  background-color: var(--bg-surface);
+}
+
+.howInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.stepNumber {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-circle);
+  background-color: var(--accent);
+  color: #000000;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-base);
+}
+
+.stepDesc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ─── CTA Banner ─── */
+.ctaBanner {
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ctaCard {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 215, 96, 0.12) 0%,
+    rgba(30, 215, 96, 0.04) 100%
+  );
+  border: 1px solid rgba(30, 215, 96, 0.2);
+  border-radius: 20px;
+  padding: 60px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.ctaText h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-base);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.ctaText p {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 440px;
+  line-height: 1.6;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ─── Footer ─── */
+.footer {
+  padding: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footerLogo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-base);
+}
+
+.footerLogo span {
+  color: var(--accent);
+}
+
+.footerLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.footerLink {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+
+.footerLink:hover {
+  color: var(--text-base);
+}
+
+.footerCopy {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ctaCard {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ctaText p {
+    max-width: 100%;
+  }
+
+  .ctaButtons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 20px;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .features,
+  .ctaBanner {
+    padding: 60px 20px;
+  }
+
+  .howItWorks {
+    padding: 60px 20px;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .heroStats {
+    gap: 24px;
+  }
+
+  .footer {
+    padding: 32px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btnPrimary,
+  .btnOutline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ctaCard {
+    padding: 40px 24px;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+}

@@ -1,0 +1,250 @@
+/* ═══════════════════════════════════════════════════════════
+   Drive — Booking Panel Styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Bottom sheet panel ── */
+.booking-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: #1A1A1A;
+  border-radius: 20px 20px 0 0;
+  padding: 0 0 env(safe-area-inset-bottom, 0);
+  box-shadow: rgba(0,0,0,0.5) 0px -8px 32px;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* ── Drag handle ── */
+.booking-panel__handle {
+  width: 36px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 9999px;
+  margin: 12px auto 0;
+}
+
+/* ── Panel inner ── */
+.booking-panel__inner {
+  padding: 16px 20px 20px;
+}
+
+/* ── Greeting ── */
+.booking-panel__greeting {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+/* ── Input group ── */
+.booking-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 16px;
+  position: relative;
+}
+
+/* Vertical connector */
+.booking-inputs__line {
+  position: absolute;
+  left: 30px;
+  top: 44px;
+  width: 2px;
+  height: 20px;
+  background: rgba(255,255,255,0.15);
+  z-index: 1;
+}
+
+.booking-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  position: relative;
+}
+.booking-input-row + .booking-input-row {
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.booking-input-row__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.booking-input-row__dot--pickup { background: #FF6B00; }
+.booking-input-row__dot--dest   { background: #fff; border: 2px solid #FF6B00; }
+
+.booking-input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  min-width: 0;
+}
+.booking-input-row input::placeholder { color: #6a6a6a; }
+
+/* ── Suggestions dropdown ── */
+.booking-suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 50;
+  box-shadow: rgba(0,0,0,0.4) 0px 8px 24px;
+}
+.booking-suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.1s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+.booking-suggestion-item:hover { background: rgba(255,255,255,0.05); }
+.booking-suggestion-item__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,107,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FF6B00;
+}
+.booking-suggestion-item__name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1;
+}
+.booking-suggestion-item__addr {
+  font-size: 0.6875rem;
+  color: #b3b3b3;
+  margin-top: 2px;
+}
+
+/* ── Ride categories ── */
+.ride-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ride-category-card {
+  background: #2a2a2a;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 12px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+.ride-category-card:hover { background: #333; }
+.ride-category-card--active {
+  border-color: #FF6B00;
+  background: rgba(255,107,0,0.08);
+}
+
+.ride-category-card__emoji { font-size: 1.5rem; line-height: 1; }
+.ride-category-card__name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+.ride-category-card__desc {
+  font-size: 0.5625rem;
+  color: #b3b3b3;
+  line-height: 1;
+}
+.ride-category-card__eta {
+  font-size: 0.5625rem;
+  color: #FF6B00;
+  font-weight: 600;
+}
+.ride-category-card__fare {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ── CTA button ── */
+.booking-cta {
+  width: 100%;
+  background: #FF6B00;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  font-family: 'DM Sans', sans-serif;
+  box-shadow: rgba(255,107,0,0.3) 0px 8px 24px;
+}
+.booking-cta:hover  { background: #e05e00; transform: translateY(-1px); }
+.booking-cta:active { transform: scale(0.98); }
+.booking-cta:disabled {
+  background: #3a3a3a;
+  color: #6a6a6a;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ── Fare estimate row ── */
+.booking-fare-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(255,107,0,0.08);
+  border: 1px solid rgba(255,107,0,0.2);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.booking-fare-row__label { font-size: 0.75rem; color: #b3b3b3; }
+.booking-fare-row__value { font-size: 0.875rem; font-weight: 700; color: #FF6B00; }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .booking-panel__inner { padding: 12px 16px 16px; }
+  .ride-category-card { padding: 10px 8px; }
+  .ride-category-card__emoji { font-size: 1.25rem; }
+}
