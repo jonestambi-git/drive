@@ -187,7 +187,7 @@ export default function DriverHome() {
             {isOnline ? (
               <><span className="driver-banner__dot" />You&apos;re online. Waiting for ride requests…</>
             ) : (
-              "You&apos;re offline. Go online to start earning."
+              "You're offline. Go online to start earning."
             )}
           </p>
         </div>

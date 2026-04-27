@@ -307,7 +307,7 @@ export default function HomePage() {
         <RecentTrips trips={MOCK_TRIPS} onRebook={handleRebook} />
 
         {/* Quick stats */}
-        <div style={{ padding: "24px 20px 0", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
+        <div className="home-quick-stats">
           {[
             { label: "Total trips", value: "24",    sub: "+3 this week" },
             { label: "Total spent", value: "₦48K",  sub: "This month"   },

@@ -265,7 +265,7 @@ export default function RiderDashboard() {
     <div style={{ display: "flex", height: "100vh", background: "var(--bg-base)", fontFamily: "var(--font-ui)", overflow: "hidden", color: "var(--text-base)" }}>
 
       {/* ══ SIDEBAR ══ */}
-      <aside style={{ width: "220px", flexShrink: 0, background: "var(--bg-surface)", borderRight: "1px solid var(--border)", display: "flex", flexDirection: "column", padding: "20px 12px", zIndex: 20 }}>
+      <aside className="rider-dashboard-sidebar">
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none", marginBottom: "28px", padding: "0 8px" }}>
           <div style={{ width: "30px", height: "30px", borderRadius: "50%", background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: "0.8125rem", color: "#fff" }}>D</div>
           <span style={{ fontSize: "1rem", fontWeight: 700, color: "var(--text-base)", letterSpacing: "-0.01em" }}>Drive</span>
@@ -304,7 +304,7 @@ export default function RiderDashboard() {
       <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
 
         {/* ── Left panel: booking ── */}
-        <div style={{ width: "340px", flexShrink: 0, background: "var(--bg-base)", borderRight: "1px solid var(--border)", display: "flex", flexDirection: "column", overflowY: "auto", zIndex: 10 }}>
+        <div className="rider-dashboard-booking">
 
           {/* Header */}
           <div style={{ padding: "20px 20px 0" }}>

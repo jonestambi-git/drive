@@ -87,12 +87,14 @@ export default function DriveNavbar({ userName, onSearchClick }: NavbarProps) {
           fontFamily: "'DM Sans', sans-serif",
           transition: "all 0.15s",
           maxWidth: "400px",
+          minWidth: 0,
+          overflow: "hidden",
         }}
         onMouseEnter={(e) => (e.currentTarget.style.background = "#333")}
         onMouseLeave={(e) => (e.currentTarget.style.background = "#2a2a2a")}
       >
         <Search size={14} style={{ flexShrink: 0 }} />
-        <span>Where to?</span>
+        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Where to?</span>
       </button>
 
       {/* Avatar + dropdown */}

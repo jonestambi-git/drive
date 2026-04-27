@@ -246,6 +246,7 @@
 @media (max-width: 480px) {
   .booking-panel__inner { padding: 12px 14px 14px; }
   .booking-panel__greeting { font-size: 0.875rem; margin-bottom: 12px; }
+  .booking-panel { max-height: 70vh; }
   .ride-category-card { padding: 10px 6px; }
   .ride-category-card__emoji { font-size: 1.125rem; }
   .ride-category-card__name { font-size: 0.6875rem; }

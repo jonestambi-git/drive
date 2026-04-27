@@ -108,7 +108,7 @@ export default function SettingsPage() {
         </div>
 
         {/* Tabs */}
-        <div style={{ display: "flex", gap: "4px", background: "var(--bg-elevated)", borderRadius: "10px", padding: "4px", marginBottom: "24px", width: "fit-content" }}>
+        <div style={{ display: "flex", gap: "4px", background: "var(--bg-elevated)", borderRadius: "10px", padding: "4px", marginBottom: "24px", width: "fit-content", flexWrap: "wrap" }}>
           {TABS.map((tab) => {
             const Icon = tab.icon;
             return (

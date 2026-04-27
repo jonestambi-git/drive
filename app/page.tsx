@@ -6,7 +6,7 @@ import {
   MapPin, Navigation, Shield, Zap, Star, ArrowRight,
   CheckCircle2, Clock, Car, Bike, Truck,
   Smartphone, CreditCard, Users, TrendingUp, Award,
-  Menu, X,
+  Menu, X, ChevronRight,
 } from "lucide-react";
 
 
@@ -49,6 +49,14 @@ const testimonials = [
 ];
 
 const navLinks = ["Ride", "Drive", "Business", "Safety", "Cities"];
+
+const navLinkMap: Record<string, { href: string; icon: React.ElementType; desc: string }> = {
+  Ride:     { href: "/auth/register", icon: Car,        desc: "Book a ride instantly"       },
+  Drive:    { href: "/drive",         icon: Navigation,  desc: "Become a driver partner"     },
+  Business: { href: "/business",      icon: TrendingUp,  desc: "Corporate ride solutions"    },
+  Safety:   { href: "/safety",        icon: Shield,      desc: "How we keep you safe"        },
+  Cities:   { href: "/cities",        icon: MapPin,      desc: "Available in 120+ cities"    },
+};
 
 /* ─── Hero slides ───────────────────────────────────────────── */
 const heroSlides = [
@@ -156,17 +164,11 @@ export default function Home() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="sp-nav-links" style={{ display: "flex" }}>
+          <nav className="sp-nav-links">
             {navLinks.map((item) => (
               <Link
                 key={item}
-                href={
-                  item === "Drive"    ? "/drive"         :
-                  item === "Ride"     ? "/auth/register" :
-                  item === "Business" ? "/business"      :
-                  item === "Safety"   ? "/safety"        :
-                  item === "Cities"   ? "/cities"        : "#"
-                }
+                href={navLinkMap[item].href}
                 className="sp-nav-link"
                 style={{ textDecoration: "none" }}
               >
@@ -177,16 +179,17 @@ export default function Home() {
 
           {/* CTA group */}
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            {/* Log in / Sign up — desktop only */}
             <Link
               href="/auth/login"
-              className="sp-btn-base sp-btn-outline"
+              className="sp-btn-base sp-btn-outline sp-hide-mobile"
               style={{ padding: "8px 20px", fontSize: "0.875rem", letterSpacing: "0.14px", textTransform: "none" }}
             >
               Log in
             </Link>
             <Link
               href="/auth/register"
-              className="sp-btn-base sp-btn-primary"
+              className="sp-btn-base sp-btn-primary sp-hide-mobile"
               style={{ padding: "10px 24px" }}
             >
               Sign up
@@ -194,168 +197,434 @@ export default function Home() {
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              style={{ display: "none", background: "none", border: "none", color: "var(--text-base)", cursor: "pointer" }}
               className="sp-mobile-menu-btn"
               aria-label="Toggle menu"
+              style={{ background: "none", border: "none", color: "var(--text-base)", cursor: "pointer", padding: "4px" }}
             >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
+      </header>
 
-        {/* Mobile menu */}
-        {menuOpen && (
-          <div style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", padding: "16px 24px" }}>
-            {navLinks.map((item) => (
-              <div key={item} style={{ padding: "12px 0", fontSize: "0.875rem", color: "var(--text-muted)", borderBottom: "1px solid var(--border-faint)", cursor: "pointer" }}>
-                {item}
-              </div>
-            ))}
-            <div style={{ display: "flex", gap: "12px", marginTop: "16px" }}>
-              <Link href="/auth/login" className="sp-btn-base sp-btn-outline" style={{ flex: 1, justifyContent: "center", padding: "10px", letterSpacing: "0.14px", textTransform: "none" }}>Log in</Link>
-              <Link href="/auth/register" className="sp-btn-base sp-btn-primary" style={{ flex: 1, justifyContent: "center", padding: "10px" }}>Sign up</Link>
+      {/* ══════════════════════════════════════════
+          MOBILE MENU — full-screen slide-in panel
+      ══════════════════════════════════════════ */}
+      {menuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            onClick={() => setMenuOpen(false)}
+            style={{
+              position: "fixed", inset: 0, zIndex: 998,
+              background: "rgba(0,0,0,0.6)",
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+              animation: "mmFadeIn 0.25s ease forwards",
+            }}
+          />
+
+          {/* Panel */}
+          <div style={{
+            position: "fixed", top: 0, right: 0, bottom: 0,
+            width: "min(320px, 88vw)",
+            zIndex: 999,
+            background: "#111",
+            display: "flex", flexDirection: "column",
+            animation: "mmSlideIn 0.3s cubic-bezier(0.4,0,0.2,1) forwards",
+            boxShadow: "-8px 0 40px rgba(0,0,0,0.6)",
+            overflowY: "auto",
+          }}>
+
+            {/* Header row */}
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "20px 20px 16px",
+              borderBottom: "1px solid rgba(255,255,255,0.07)",
+            }}>
+              <Link href="/" onClick={() => setMenuOpen(false)} style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
+                <div style={{ width: "30px", height: "30px", borderRadius: "50%", background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: "0.75rem", color: "#fff" }}>D</div>
+                <span style={{ fontSize: "1rem", fontWeight: 900, color: "#fff", letterSpacing: "-0.01em" }}>Drive</span>
+              </Link>
+              <button
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+                style={{
+                  width: "34px", height: "34px", borderRadius: "50%",
+                  background: "rgba(255,255,255,0.08)", border: "none",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  cursor: "pointer", color: "#fff", transition: "background 0.15s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.14)")}
+                onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav style={{ flex: 1, padding: "12px 12px 0" }}>
+              {navLinks.map((item) => {
+                const { href, icon: Icon, desc } = navLinkMap[item];
+                return (
+                  <Link
+                    key={item}
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: "14px",
+                      padding: "13px 12px",
+                      borderRadius: "12px",
+                      textDecoration: "none",
+                      marginBottom: "4px",
+                      transition: "background 0.15s",
+                      background: "transparent",
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  >
+                    {/* Icon circle */}
+                    <div style={{
+                      width: "40px", height: "40px", borderRadius: "10px",
+                      background: "rgba(224,49,16,0.12)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      flexShrink: 0,
+                    }}>
+                      <Icon size={18} style={{ color: "var(--accent)" }} />
+                    </div>
+                    {/* Text */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <p style={{ fontSize: "0.9375rem", fontWeight: 600, color: "#fff", lineHeight: 1, margin: 0 }}>{item}</p>
+                      <p style={{ fontSize: "0.6875rem", color: "#6a6a6a", marginTop: "3px", margin: 0 }}>{desc}</p>
+                    </div>
+                    <ChevronRight size={15} style={{ color: "#4d4d4d", flexShrink: 0 }} />
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Divider */}
+            <div style={{ height: "1px", background: "rgba(255,255,255,0.07)", margin: "16px 20px 0" }} />
+
+            {/* Auth buttons */}
+            <div style={{ padding: "16px 20px 32px", display: "flex", flexDirection: "column", gap: "10px" }}>
+              <Link
+                href="/auth/register"
+                onClick={() => setMenuOpen(false)}
+                className="sp-btn-base sp-btn-primary"
+                style={{ width: "100%", justifyContent: "center", padding: "14px", fontSize: "0.9375rem", letterSpacing: "0.5px", textTransform: "none" }}
+              >
+                Sign up free
+              </Link>
+              <Link
+                href="/auth/login"
+                onClick={() => setMenuOpen(false)}
+                className="sp-btn-base sp-btn-outline"
+                style={{ width: "100%", justifyContent: "center", padding: "13px", fontSize: "0.9375rem", letterSpacing: "0.14px", textTransform: "none" }}
+              >
+                Log in
+              </Link>
+              <p style={{ fontSize: "0.6875rem", color: "#4d4d4d", textAlign: "center", marginTop: "4px" }}>
+                Want to drive?{" "}
+                <Link href="/auth/register?role=driver" onClick={() => setMenuOpen(false)} style={{ color: "#b3b3b3", fontWeight: 600 }}>
+                  Apply here
+                </Link>
+              </p>
             </div>
           </div>
-        )}
-      </header>
+
+          {/* Keyframes for the menu */}
+          <style>{`
+            @keyframes mmFadeIn {
+              from { opacity: 0; }
+              to   { opacity: 1; }
+            }
+            @keyframes mmSlideIn {
+              from { transform: translateX(100%); }
+              to   { transform: translateX(0); }
+            }
+          `}</style>
+        </>
+      )}
 
       {/* ══════════════════════════════════════════
           HERO — 5-slide carousel
       ══════════════════════════════════════════ */}
-      <section className="sp-hero" style={{ minHeight: "600px", overflow: "hidden" }}>
+      <section className="sp-hero" style={{
+        minHeight: "calc(100svh - 64px)",
+        height: "calc(100svh - 64px)",
+        overflow: "hidden",
+        padding: "12px",
+        display: "flex",
+        alignItems: "stretch",
+        background: "var(--bg-base)",
+        position: "relative",
+      }}>
 
-        {/* ── Shared background image (provided) ── */}
-        <div
-          className="sp-hero__bg"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1600&q=90')",
-            opacity: 0.55,
-            filter: "brightness(0.85) saturate(1.2)",
-          }}
-        />
-
-        {/* Gradient: strong left fade so text is readable, right stays open for card */}
+        {/* ── Inset rounded card — fills the padded area ── */}
         <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(100deg, rgba(18,18,18,0.97) 0%, rgba(18,18,18,0.82) 42%, rgba(18,18,18,0.45) 68%, rgba(18,18,18,0.15) 100%)",
-        }} />
+          position: "relative",
+          flex: 1,
+          borderRadius: "20px",
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+        }}>
 
-        {/* Orange glow accent from the image lights */}
-        <div style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          background: "radial-gradient(ellipse 60% 40% at 30% 80%, rgba(255,120,30,0.08) 0%, transparent 70%)",
-        }} />
+          {/* Background image */}
+          <div
+            className="sp-hero__bg"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1600&q=90')",
+              opacity: 0.55,
+              filter: "brightness(0.85) saturate(1.2)",
+              borderRadius: "20px",
+            }}
+          />
 
-        <div className="sp-hero__fade-bottom" />
+          {/* Gradient overlay */}
+          <div style={{
+            position: "absolute", inset: 0, borderRadius: "20px",
+            background: "linear-gradient(100deg, rgba(18,18,18,0.97) 0%, rgba(18,18,18,0.82) 42%, rgba(18,18,18,0.45) 68%, rgba(18,18,18,0.15) 100%)",
+          }} />
 
-        <div className="sp-hero__content">
-          <div className="sp-container hero-container" style={{ maxWidth: "960px" }}>
-            <div className="hero-grid">
+          {/* Orange glow */}
+          <div style={{
+            position: "absolute", inset: 0, pointerEvents: "none", borderRadius: "20px",
+            background: "radial-gradient(ellipse 60% 40% at 30% 80%, rgba(255,120,30,0.08) 0%, transparent 70%)",
+          }} />
+
+          <div className="sp-hero__fade-bottom" />
+
+          {/* Content */}
+          <div className="sp-hero__content" style={{ width: "100%" }}>
+            <div className="sp-container hero-container" style={{ maxWidth: "960px" }}>
+              <div className="hero-grid">
 
               {/* ── LEFT — animated slide content ── */}
-              <div
-                key={slide}
-                style={{
-                  display: "flex", flexDirection: "column", gap: "24px",
-                  animation: animating
-                    ? "heroSlideOut 0.42s cubic-bezier(0.4,0,0.2,1) forwards"
-                    : "heroSlideIn 0.42s cubic-bezier(0.4,0,0.2,1) forwards",
-                }}
-              >
-                {/* Slide tag pill */}
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <span style={{
-                    display: "inline-flex", alignItems: "center", gap: "6px",
-                    background: "var(--accent-dim)", border: "1px solid rgba(30,215,96,0.35)",
-                    color: "var(--accent)", fontSize: "0.5rem", fontWeight: 600,
-                    letterSpacing: "0.16em", textTransform: "uppercase",
-                    padding: "4px 10px", borderRadius: "var(--radius-pill)",
+              <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+
+                {/* Animated portion — slides on carousel change */}
+                <div
+                  key={slide}
+                  style={{
+                    display: "flex", flexDirection: "column", gap: "24px",
+                    textAlign: "left",
+                    animation: animating
+                      ? "heroSlideOut 0.42s cubic-bezier(0.4,0,0.2,1) forwards"
+                      : "heroSlideIn 0.42s cubic-bezier(0.4,0,0.2,1) forwards",
+                  }}
+                >
+                  {/* Slide tag pill */}
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <span style={{
+                      display: "inline-flex", alignItems: "center", gap: "6px",
+                      background: "var(--accent-dim)", border: "1px solid rgba(30,215,96,0.35)",
+                      color: "var(--accent)", fontSize: "0.5rem", fontWeight: 600,
+                      letterSpacing: "0.16em", textTransform: "uppercase",
+                      padding: "4px 10px", borderRadius: "var(--radius-pill)",
+                      fontFamily: "var(--font-ui)",
+                    }}>
+                      <span style={{ width: "4px", height: "4px", borderRadius: "50%", background: "var(--accent)", animation: "sp-pulse 2s infinite" }} />
+                      {s.eyebrow}
+                    </span>
+                    <span style={{
+                      fontSize: "0.5rem", fontWeight: 600, color: "var(--text-faint)",
+                      letterSpacing: "0.1em", textTransform: "uppercase",
+                      fontFamily: "var(--font-ui)",
+                    }}>
+                      {s.tag}
+                    </span>
+                  </div>
+
+                  {/* Headline */}
+                  <h1 style={{
+                    fontSize: "clamp(1.35rem, 3.2vw, 2.1rem)",
+                    fontWeight: 700,
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.02em",
+                    color: "var(--text-base)",
+                    margin: 0,
                     fontFamily: "var(--font-ui)",
                   }}>
-                    <span style={{ width: "4px", height: "4px", borderRadius: "50%", background: "var(--accent)", animation: "sp-pulse 2s infinite" }} />
-                    {s.eyebrow}
-                  </span>
-                  <span style={{
-                    fontSize: "0.5rem", fontWeight: 600, color: "var(--text-faint)",
-                    letterSpacing: "0.1em", textTransform: "uppercase",
+                    {s.headline[0]}
+                    <br />
+                    <span style={{ color: "var(--accent)" }}>{s.headline[1]}</span>
+                  </h1>
+
+                  {/* Body */}
+                  <p style={{
+                    fontSize: "0.75rem",
+                    color: "var(--text-muted)",
+                    lineHeight: 1.75,
+                    maxWidth: "380px",
+                    margin: 0,
                     fontFamily: "var(--font-ui)",
+                    fontWeight: 400,
                   }}>
-                    {s.tag}
-                  </span>
-                </div>
+                    {s.body}
+                  </p>
 
-                {/* Headline */}
-                <h1 style={{
-                  fontSize: "clamp(1.35rem, 3.2vw, 2.1rem)",
-                  fontWeight: 700,
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.02em",
-                  color: "var(--text-base)",
-                  margin: 0,
-                  fontFamily: "var(--font-ui)",
-                }}>
-                  {s.headline[0]}
-                  <br />
-                  <span style={{ color: "var(--accent)" }}>{s.headline[1]}</span>
-                </h1>
+                  {/* CTAs — desktop only */}
+                  <div className="sp-hide-mobile" style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                    <Link href={s.cta.href} className="sp-btn-base sp-btn-primary" style={{ padding: "9px 18px", fontSize: "0.6875rem", fontFamily: "var(--font-ui)" }}>
+                      {s.cta.label} <ArrowRight size={12} />
+                    </Link>
+                    <Link href={s.ctaSecondary.href} className="sp-btn-base sp-btn-outline" style={{ padding: "9px 14px", fontSize: "0.6875rem", letterSpacing: "0.14px", textTransform: "none", fontFamily: "var(--font-ui)" }}>
+                      {s.ctaSecondary.label}
+                    </Link>
+                  </div>
 
-                {/* Body */}
-                <p style={{
-                  fontSize: "0.75rem",
-                  color: "var(--text-muted)",
-                  lineHeight: 1.75,
-                  maxWidth: "380px",
-                  margin: 0,
-                  fontFamily: "var(--font-ui)",
-                  fontWeight: 400,
-                }}>
-                  {s.body}
-                </p>
+                  {/* Mini stats */}
+                  <div style={{ display: "flex", gap: "24px", paddingTop: "2px" }}>
+                    {s.stats.map(([val, lbl]) => (
+                      <div key={lbl}>
+                        <p style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-base)", lineHeight: 1, fontFamily: "var(--font-ui)" }}>{val}</p>
+                        <p style={{ fontSize: "0.625rem", color: "var(--text-muted)", marginTop: "3px", fontFamily: "var(--font-ui)" }}>{lbl}</p>
+                      </div>
+                    ))}
+                  </div>
 
-                {/* CTAs */}
-                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                  <Link href={s.cta.href} className="sp-btn-base sp-btn-primary" style={{ padding: "9px 18px", fontSize: "0.6875rem", fontFamily: "var(--font-ui)" }}>
-                    {s.cta.label} <ArrowRight size={12} />
-                  </Link>
-                  <Link href={s.ctaSecondary.href} className="sp-btn-base sp-btn-outline" style={{ padding: "9px 14px", fontSize: "0.6875rem", letterSpacing: "0.14px", textTransform: "none", fontFamily: "var(--font-ui)" }}>
-                    {s.ctaSecondary.label}
-                  </Link>
-                </div>
+                  {/* Slide dots */}
+                  <div style={{ display: "flex", gap: "5px", paddingTop: "2px" }}>
+                    {heroSlides.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => goTo(i)}
+                        aria-label={`Go to slide ${i + 1}`}
+                        style={{
+                          width: i === slide ? "20px" : "5px",
+                          height: "5px",
+                          borderRadius: "3px",
+                          background: i === slide ? "var(--accent)" : "rgba(255,255,255,0.22)",
+                          border: "none",
+                          cursor: "pointer",
+                          padding: 0,
+                          transition: "all 0.35s ease",
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>{/* end animated portion */}
 
-                {/* Mini stats */}
-                <div style={{ display: "flex", gap: "24px", paddingTop: "2px" }}>
-                  {s.stats.map(([val, lbl]) => (
-                    <div key={lbl}>
-                      <p style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-base)", lineHeight: 1, fontFamily: "var(--font-ui)" }}>{val}</p>
-                      <p style={{ fontSize: "0.625rem", color: "var(--text-muted)", marginTop: "3px", fontFamily: "var(--font-ui)" }}>{lbl}</p>
+                {/* ── STATIC bottom section — mobile only, never animates ── */}
+                <div className="sp-hide-desktop" style={{ marginTop: "28px", display: "flex", flexDirection: "column", gap: "12px" }}>
+
+                  {/* Booking card */}
+                  <div className="hero-mobile-card" style={{
+                    background: "rgba(26,26,26,0.92)",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    borderRadius: "16px",
+                    padding: "18px 16px",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    boxShadow: "rgba(0,0,0,0.5) 0px 16px 48px",
+                  }}>
+                    <p style={{
+                      fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "1.6px",
+                      textTransform: "uppercase", color: "var(--text-base)",
+                      marginBottom: "12px", fontFamily: "var(--font-ui)",
+                    }}>
+                      Where to?
+                    </p>
+
+                    {/* Pickup */}
+                    <div style={{ position: "relative", marginBottom: "10px" }}>
+                      <div style={{
+                        position: "absolute", left: "14px", top: "50%",
+                        transform: "translateY(-50%)",
+                        width: "10px", height: "10px", borderRadius: "50%",
+                        background: "var(--accent)",
+                      }} />
+                      <input
+                        type="text"
+                        placeholder="Pickup location"
+                        style={{
+                          width: "100%", background: "var(--bg-elevated)",
+                          color: "var(--text-base)", fontSize: "0.875rem",
+                          padding: "12px 12px 12px 34px", borderRadius: "10px",
+                          border: "1px solid rgba(255,255,255,0.1)", outline: "none",
+                          fontFamily: "var(--font-ui)",
+                        }}
+                      />
                     </div>
-                  ))}
-                </div>
 
-                {/* Slide dots */}
-                <div style={{ display: "flex", gap: "5px", paddingTop: "2px" }}>
-                  {heroSlides.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => goTo(i)}
-                      aria-label={`Go to slide ${i + 1}`}
+                    {/* Destination */}
+                    <div style={{ position: "relative", marginBottom: "14px" }}>
+                      <MapPin size={15} style={{
+                        position: "absolute", left: "14px", top: "50%",
+                        transform: "translateY(-50%)", color: "var(--text-muted)",
+                        pointerEvents: "none",
+                      }} />
+                      <input
+                        type="text"
+                        placeholder="Where are you going?"
+                        style={{
+                          width: "100%", background: "var(--bg-elevated)",
+                          color: "var(--text-base)", fontSize: "0.875rem",
+                          padding: "12px 12px 12px 34px", borderRadius: "10px",
+                          border: "1px solid rgba(255,255,255,0.1)", outline: "none",
+                          fontFamily: "var(--font-ui)",
+                        }}
+                      />
+                    </div>
+
+                    {/* See prices CTA */}
+                    <Link
+                      href="/auth/register"
+                      className="sp-btn-base sp-btn-primary"
                       style={{
-                        width: i === slide ? "20px" : "5px",
-                        height: "5px",
-                        borderRadius: "3px",
-                        background: i === slide ? "var(--accent)" : "rgba(255,255,255,0.22)",
-                        border: "none",
-                        cursor: "pointer",
-                        padding: 0,
-                        transition: "all 0.35s ease",
+                        width: "100%", justifyContent: "center",
+                        padding: "13px", fontSize: "0.875rem",
+                        borderRadius: "var(--radius-pill-lg)",
+                        fontFamily: "var(--font-ui)",
                       }}
-                    />
-                  ))}
-                </div>
-              </div>
+                    >
+                      See prices
+                    </Link>
+
+                    <p style={{
+                      fontSize: "0.625rem", color: "var(--text-faint)",
+                      textAlign: "center", marginTop: "8px",
+                      fontFamily: "var(--font-ui)",
+                    }}>
+                      No account needed to see prices
+                    </p>
+                  </div>
+
+                  {/* Auth buttons */}
+                  <div style={{ display: "flex", gap: "8px" }}>
+                    <Link
+                      href="/auth/login"
+                      className="sp-btn-base sp-btn-outline"
+                      style={{
+                        flex: 1, justifyContent: "center",
+                        padding: "11px", fontSize: "0.8125rem",
+                        letterSpacing: "0.14px", textTransform: "none",
+                        fontFamily: "var(--font-ui)",
+                      }}
+                    >
+                      Log in
+                    </Link>
+                    <Link
+                      href="/auth/register"
+                      className="sp-btn-base sp-btn-primary"
+                      style={{
+                        flex: 1, justifyContent: "center",
+                        padding: "11px", fontSize: "0.8125rem",
+                        fontFamily: "var(--font-ui)",
+                      }}
+                    >
+                      Sign up free
+                    </Link>
+                  </div>
+
+                </div>{/* end static bottom section */}
+
+              </div>{/* end left column */}
 
               {/* ── RIGHT — booking card (unchanged) ── */}
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <div style={{ display: "flex", justifyContent: "flex-end" }} className="sp-hide-mobile">
                 <div style={{ background: "var(--bg-surface)", borderRadius: "var(--radius-panel)", padding: "28px", width: "100%", maxWidth: "380px", boxShadow: "var(--shadow-heavy)" }}>
                   <p style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "1.4px", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "20px" }}>Where to?</p>
 
@@ -393,9 +662,11 @@ export default function Home() {
                 </div>
               </div>
 
-            </div>
-          </div>
-        </div>
+            </div>{/* end hero-grid */}
+            </div>{/* end hero-container */}
+          </div>{/* end sp-hero__content */}
+
+        </div>{/* end inset rounded card */}
 
         {/* Keyframe styles injected inline */}
         <style>{`

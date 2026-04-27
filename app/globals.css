@@ -1498,7 +1498,12 @@ table { border-collapse: collapse; }
   .sp-mobile-menu-btn { display: flex !important; }
 
   /* Hero — public landing page */
-  .sp-hero { min-height: 100svh !important; }
+  .sp-hero {
+    min-height: calc(100svh - 64px) !important;
+    height: calc(100svh - 64px) !important;
+    overflow: hidden !important;
+    padding: 8px !important;
+  }
 
   /* Auth pages */
   .sp-auth-left { display: none !important; }
@@ -1537,6 +1542,21 @@ table { border-collapse: collapse; }
   .sp-mobile-menu-btn { display: flex !important; }
 
   .sp-auth-left { display: none !important; }
+
+  /* Hero on tablet */
+  .sp-hero {
+    min-height: calc(100svh - 64px) !important;
+    height: calc(100svh - 64px) !important;
+    padding: 10px !important;
+  }
+}
+
+/* ── Mobile menu button: hidden by default, shown on mobile ── */
+.sp-mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* ── Desktop 1024px+ ── */
@@ -1578,10 +1598,56 @@ table { border-collapse: collapse; }
   }
 }
 
+/* ── On mobile: center the animated text portion ── */
+@media (max-width: 767px) {
+  .hero-grid > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* The animated inner div — center its content */
+  .hero-grid > div:first-child > div:first-child {
+    text-align: center;
+    align-items: center;
+    width: 100%;
+  }
+  /* Keep the static bottom section (booking card) full-width, left-aligned */
+  .hero-grid > div:first-child > div:last-child {
+    width: 100%;
+    align-items: stretch;
+  }
+  /* Body text max-width reset on mobile */
+  .hero-grid > div:first-child > div:first-child p {
+    max-width: 100% !important;
+  }
+}
+
 /* ── Hero container padding ── */
-.hero-container { padding: 64px; }
-@media (max-width: 1023px) { .hero-container { padding: 48px 24px; } }
-@media (max-width: 639px)  { .hero-container { padding: 32px 16px; } }
+.hero-container { padding: 48px 56px; }
+@media (max-width: 1023px) { .hero-container { padding: 36px 28px; } }
+@media (max-width: 639px)  {
+  .hero-container {
+    padding: 20px 16px 20px;
+    /* On mobile the hero is a fixed height — compress spacing */
+  }
+}
+
+/* ── Mobile hero: compress gaps so everything fits in viewport ── */
+@media (max-width: 767px) {
+  /* Tighten the animated slide gap */
+  .hero-grid > div:first-child > div:first-child {
+    gap: 14px !important;
+  }
+  /* Tighten the static bottom section gap */
+  .hero-grid > div:first-child > div:last-child {
+    margin-top: 16px !important;
+    gap: 8px !important;
+  }
+  /* Booking card inner padding */
+  .hero-mobile-card {
+    padding: 16px 16px !important;
+  }
+}
 
 /* ── Auth page layout ── */
 .auth-page { display: flex; min-height: 100vh; }
@@ -1679,4 +1745,113 @@ table { border-collapse: collapse; }
 /* ── Global utility keyframes ── */
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   17. MOBILE-SPECIFIC COMPONENT FIXES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Register page: 2-col grid that collapses on mobile ── */
+.reg-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 480px) {
+  .reg-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Rider home: quick stats 3-col grid ── */
+.home-quick-stats {
+  padding: 24px 20px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+@media (max-width: 360px) {
+  .home-quick-stats {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Booking panel: reduce max-height on mobile ── */
+@media (max-width: 639px) {
+  .booking-panel {
+    max-height: 70vh !important;
+  }
+}
+
+/* ── Driver banner: stack stats below greeting on very small screens ── */
+@media (max-width: 400px) {
+  .driver-banner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  .driver-banner__stats {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* ── Rider dashboard: hide sidebar on mobile ── */
+.rider-dashboard-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 12px;
+  z-index: 20;
+}
+.rider-dashboard-booking {
+  width: 340px;
+  flex-shrink: 0;
+  background: var(--bg-base);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 10;
+}
+@media (max-width: 1023px) {
+  .rider-dashboard-sidebar {
+    display: none !important;
+  }
+}
+@media (max-width: 767px) {
+  .rider-dashboard-booking {
+    width: 100% !important;
+    border-right: none !important;
+  }
+}
+
+/* ── Payments / trips main: reduce large padding on mobile ── */
+@media (max-width: 1023px) {
+  .rider-layout > main {
+    padding: 20px 16px !important;
+  }
+}
+
+/* ── sp-cta-card: fix 48px padding on mobile ── */
+@media (max-width: 639px) {
+  .sp-cta-card {
+    padding: 24px 20px !important;
+  }
+}
+
+/* ── sp-stat-card: fix 32px 40px padding on mobile ── */
+@media (max-width: 639px) {
+  .sp-stat-card {
+    padding: 16px 12px !important;
+  }
+}
+
+/* ── Navbar search: allow full shrink on very small screens ── */
+@media (max-width: 360px) {
+  .sp-navbar__inner {
+    gap: 8px !important;
+  }
 }

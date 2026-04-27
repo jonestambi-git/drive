@@ -163,7 +163,7 @@ export default function RegisterPage() {
               </Field>
 
               {/* Email + Phone row */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+              <div className="reg-grid-2">
                 <Field label="Email" icon={Mail}>
                   <input type="email" placeholder="you@example.com" value={form.email} onChange={(e) => update("email", e.target.value)} required autoComplete="email" style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
                 </Field>
@@ -173,7 +173,7 @@ export default function RegisterPage() {
               </div>
 
               {/* Password row */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+              <div className="reg-grid-2">
                 <div>
                   <label style={labelStyle}>Password</label>
                   <div style={{ position: "relative" }}>
@@ -194,7 +194,7 @@ export default function RegisterPage() {
                 <>
                   <div style={{ height: "1px", background: "var(--border)", margin: "4px 0" }} />
                   <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Vehicle details</p>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                  <div className="reg-grid-2">
                     <Field label="Make" icon={Car}>
                       <input type="text" placeholder="Toyota" value={form.vehicleMake} onChange={(e) => update("vehicleMake", e.target.value)} required style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
                     </Field>
@@ -203,7 +203,7 @@ export default function RegisterPage() {
                     </Field>
                   </div>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                  <div className="reg-grid-2">
                     <Field label="Year" icon={Car}>
                       <input type="number" placeholder="2022" value={form.vehicleYear} onChange={(e) => update("vehicleYear", e.target.value)} required min="2000" max="2030" style={inputStyle} onFocus={focusStyle} onBlur={blurStyle} />
                     </Field>

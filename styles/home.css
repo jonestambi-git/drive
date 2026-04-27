@@ -142,8 +142,24 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .home-map-section { height: calc(100vh - 60px); min-height: 320px; }
+  .home-map-section {
+    height: calc(100svh - 60px);
+    min-height: 320px;
+  }
 }
 @media (max-width: 480px) {
-  .home-map-section { height: calc(100vh - 60px); min-height: 300px; }
+  .home-map-section {
+    height: calc(100svh - 60px);
+    min-height: 300px;
+  }
+  .home-scroll {
+    padding-bottom: 60px;
+  }
+  .promo-banner {
+    margin: 16px 14px 0;
+    padding: 14px 16px;
+  }
+  .promo-banner__headline {
+    font-size: 0.8125rem;
+  }
 }

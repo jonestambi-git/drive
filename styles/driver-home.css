@@ -106,26 +106,6 @@
 }
 
 /* ── Earnings strip ── */
-@media (max-width: 639px) {
-  .driver-banner { padding: 14px 16px; }
-  .driver-banner__greeting { font-size: 0.9375rem; }
-  .driver-banner__stats { gap: 16px; }
-  .driver-banner__stat-value { font-size: 1.125rem; }
-  .driver-map-section {
-    height: calc(100svh - 60px - 80px);
-    min-height: 260px;
-  }
-  .quick-actions { grid-template-columns: repeat(3,1fr); gap: 8px; }
-  .quick-action-btn { padding: 12px 8px; }
-  .quick-action-btn__icon { font-size: 1.125rem; }
-  .earnings-card { min-width: 120px; padding: 12px 14px; }
-  .earnings-card__value { font-size: 1rem; }
-}
-
-@media (min-width: 640px) and (max-width: 1023px) {
-  .driver-map-section { height: 50vh; min-height: 320px; }
-  .driver-banner { padding: 18px 20px; }
-}
 .earnings-strip {
   display: flex;
   gap: 12px;
@@ -251,10 +231,80 @@
   flex-shrink: 0;
 }
 
-/* ── Responsive ── */
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Tablet 640–1023px ── */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .driver-map-section { height: 50vh; min-height: 320px; }
+  .driver-banner { padding: 18px 20px; }
+  .earnings-strip { padding: 16px 16px 0; }
+  .quick-actions  { padding: 16px 16px 0; }
+  .driver-trips   { padding: 16px 16px 0; }
+}
+
+/* ── Mobile < 640px ── */
 @media (max-width: 639px) {
-  .driver-banner { padding: 16px; }
-  .driver-banner__stats { gap: 16px; }
-  .driver-map-section { height: 45vh; min-height: 280px; }
-  .quick-actions { grid-template-columns: repeat(3,1fr); gap: 8px; }
+  .driver-banner {
+    padding: 14px 16px;
+  }
+  .driver-banner__greeting {
+    font-size: 0.9375rem;
+  }
+  .driver-banner__stats {
+    gap: 16px;
+  }
+  .driver-banner__stat-value {
+    font-size: 1.125rem;
+  }
+  .driver-map-section {
+    height: 45vh;
+    min-height: 260px;
+  }
+  .earnings-strip {
+    padding: 16px 14px 0;
+    gap: 10px;
+  }
+  .earnings-card {
+    min-width: 120px;
+    padding: 12px 14px;
+  }
+  .earnings-card__value {
+    font-size: 1rem;
+  }
+  .quick-actions {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 16px 14px 0;
+  }
+  .quick-action-btn {
+    padding: 12px 8px;
+  }
+  .quick-action-btn__icon {
+    font-size: 1.125rem;
+  }
+  .driver-trips {
+    padding: 16px 14px 0;
+  }
+}
+
+/* ── Very small screens < 400px ── */
+@media (max-width: 400px) {
+  .driver-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .driver-banner__stats {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+  .driver-banner__stat {
+    text-align: left;
+  }
+  .driver-map-section {
+    height: 40vh;
+    min-height: 240px;
+  }
 }
