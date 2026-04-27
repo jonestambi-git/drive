@@ -68,7 +68,7 @@ export default function RegisterPage() {
     try {
       const payload: Record<string, string> = { fullName: form.fullName, email: form.email, phone: form.phone, password: form.password, role };
       if (role === "driver") Object.assign(payload, { vehicleMake: form.vehicleMake, vehicleModel: form.vehicleModel, vehicleYear: form.vehicleYear, vehicleColor: form.vehicleColor, licensePlate: form.licensePlate });
-      const res  = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      const res  = await fetch(`/api/auth/register`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const data = await res.json();
       if (!res.ok) { setError(data.message || "Registration failed."); return; }
       if (role === "driver") {
