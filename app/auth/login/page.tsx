@@ -26,7 +26,7 @@ export default function LoginPage() {
       localStorage.setItem("accessToken",  data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
       const role = data.user?.role;
-      window.location.href = role === "admin" ? "/admin" : role === "driver" ? "/driver/dashboard" : "/home";
+      window.location.href = role === "admin" ? "/admin" : role === "driver" ? "/driver/home" : "/home";
     } catch {
       setError("Network error. Please check your connection.");
     } finally {

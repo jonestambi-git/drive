@@ -59,7 +59,7 @@
 /* ── Locate-me button ── */
 .map-locate-btn {
   position: absolute;
-  bottom: 200px;
+  bottom: 16px;
   right: 16px;
   z-index: 20;
   width: 44px;

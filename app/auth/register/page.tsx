@@ -76,8 +76,7 @@ export default function RegisterPage() {
       } else {
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
-        window.location.href = "/home";
-      }
+        window.location.href = "/home";      }
     } catch { setError("Network error. Please check your connection."); }
     finally { setLoading(false); }
   }

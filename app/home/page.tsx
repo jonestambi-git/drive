@@ -85,11 +85,10 @@ export default function HomePage() {
 
   /* ── Auth guard ── */
   useEffect(() => {
-    // In development, auto-inject a mock token so the page is viewable
+    // In development, auto-inject a mock token only if none exists at all
     if (process.env.NODE_ENV === "development") {
       const existing = localStorage.getItem("accessToken");
       if (!existing) {
-        // Mock JWT: header.payload.signature — payload has fullName, role, exp far in future
         const mockPayload = btoa(JSON.stringify({
           fullName: "Chidi Okeke",
           role: "rider",
@@ -257,7 +256,7 @@ export default function HomePage() {
       />
 
       {/* ── Map + booking panel ── */}
-      <div className="home-map-section" style={{ marginTop: "60px" }}>
+      <div className="home-map-section" style={{ marginTop: "60px", height: "calc(100vh - 60px)" }}>
         <MapView
           userCoords={userCoords}
           pickup={pickup}

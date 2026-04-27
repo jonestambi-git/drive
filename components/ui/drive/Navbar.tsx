@@ -141,16 +141,18 @@ export default function DriveNavbar({ userName, onSearchClick }: NavbarProps) {
         {/* Dropdown menu */}
         {dropdownOpen && (
           <div style={{
-            position: "absolute",
-            top: "calc(100% + 8px)",
-            right: 0,
+            position: "fixed",
+            top: "68px",
+            right: "12px",
             background: "#222",
             border: "1px solid rgba(255,255,255,0.1)",
             borderRadius: "12px",
             padding: "8px",
-            minWidth: "200px",
-            boxShadow: "rgba(0,0,0,0.5) 0px 8px 24px",
-            zIndex: 200,
+            minWidth: "220px",
+            width: "calc(100vw - 24px)",
+            maxWidth: "280px",
+            boxShadow: "rgba(0,0,0,0.6) 0px 12px 32px",
+            zIndex: 9999,
           }}>
             {/* User info */}
             <div style={{ padding: "10px 12px 12px", borderBottom: "1px solid rgba(255,255,255,0.07)", marginBottom: "6px" }}>
@@ -168,13 +170,14 @@ export default function DriveNavbar({ userName, onSearchClick }: NavbarProps) {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: "10px",
-                    padding: "9px 12px",
+                    gap: "12px",
+                    padding: "12px 14px",
                     borderRadius: "8px",
-                    fontSize: "0.875rem",
+                    fontSize: "0.9375rem",
                     color: "#b3b3b3",
                     textDecoration: "none",
                     transition: "all 0.1s",
+                    minHeight: "44px",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.05)";
@@ -185,7 +188,7 @@ export default function DriveNavbar({ userName, onSearchClick }: NavbarProps) {
                     (e.currentTarget as HTMLAnchorElement).style.color = "#b3b3b3";
                   }}
                 >
-                  <Icon size={15} style={{ flexShrink: 0 }} />
+                  <Icon size={17} style={{ flexShrink: 0 }} />
                   {item.label}
                 </Link>
               );
@@ -197,10 +200,10 @@ export default function DriveNavbar({ userName, onSearchClick }: NavbarProps) {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "10px",
-                  padding: "9px 12px",
+                  gap: "12px",
+                  padding: "12px 14px",
                   borderRadius: "8px",
-                  fontSize: "0.875rem",
+                  fontSize: "0.9375rem",
                   color: "#f3727f",
                   background: "none",
                   border: "none",
@@ -209,11 +212,12 @@ export default function DriveNavbar({ userName, onSearchClick }: NavbarProps) {
                   textAlign: "left",
                   fontFamily: "'DM Sans', sans-serif",
                   transition: "background 0.1s",
+                  minHeight: "44px",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(243,114,127,0.08)")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "none")}
               >
-                <LogOut size={15} style={{ flexShrink: 0 }} />
+                <LogOut size={17} style={{ flexShrink: 0 }} />
                 Sign Out
               </button>
             </div>

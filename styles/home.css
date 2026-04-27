@@ -59,7 +59,7 @@
 /* ── Map section ── */
 .home-map-section {
   position: relative;
-  height: 65vh;
+  height: calc(100vh - 60px);
   min-height: 400px;
   flex-shrink: 0;
 }
@@ -142,8 +142,8 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .home-map-section { height: 55vh; }
+  .home-map-section { height: calc(100vh - 60px); min-height: 320px; }
 }
 @media (max-width: 480px) {
-  .home-map-section { height: 50vh; min-height: 320px; }
+  .home-map-section { height: calc(100vh - 60px); min-height: 300px; }
 }

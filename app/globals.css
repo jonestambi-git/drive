@@ -1463,10 +1463,19 @@ table { border-collapse: collapse; }
     gap: 12px !important;
   }
 
-  /* Stats → 2 col */
+  /* Stats → 2 col, compact padding */
   .sp-stats-grid {
     grid-template-columns: 1fr 1fr !important;
   }
+  .sp-stat-card {
+    padding: 16px 12px !important;
+    gap: 10px !important;
+  }
+  .sp-stat-card__icon {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .sp-stat-card__value { font-size: 1rem !important; }
 
   /* Steps → 1 col, no connector line */
   .sp-steps-grid {
@@ -1488,8 +1497,8 @@ table { border-collapse: collapse; }
   .sp-nav-links     { display: none !important; }
   .sp-mobile-menu-btn { display: flex !important; }
 
-  /* Hero */
-  .sp-hero { min-height: 480px !important; }
+  /* Hero — public landing page */
+  .sp-hero { min-height: 100svh !important; }
 
   /* Auth pages */
   .sp-auth-left { display: none !important; }
@@ -1498,7 +1507,10 @@ table { border-collapse: collapse; }
   .rider-sidebar { display: none !important; }
 
   /* CTA cards */
-  .sp-cta-card { padding: 28px 20px !important; }
+  .sp-cta-card { padding: 24px 16px !important; }
+
+  /* Section eyebrow — center on mobile */
+  .sp-section-eyebrow { justify-content: center; }
 }
 
 /* ── Tablet 640–1023px ── */
@@ -1511,6 +1523,7 @@ table { border-collapse: collapse; }
   .sp-grid-5 { grid-template-columns: 1fr 1fr 1fr !important; gap: 16px !important; }
 
   .sp-stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .sp-stat-card  { padding: 20px 16px !important; }
 
   .sp-steps-grid {
     grid-template-columns: 1fr 1fr !important;
