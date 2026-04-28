@@ -293,7 +293,6 @@ export default function DrivePage() {
         <FadeInSection direction="up">
           <div className="sp-container">
             <div className="sp-grid-2" style={{ alignItems: "center" }}>
-
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               <p className="sp-section-eyebrow">Earnings potential</p>
               <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", lineHeight: 1.1, margin: 0 }}>
@@ -325,6 +324,7 @@ export default function DrivePage() {
                   <p style={{ fontSize: "0.6875rem", color: "var(--text-muted)" }}>{e.note}</p>
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </FadeInSection>
@@ -380,8 +380,9 @@ export default function DrivePage() {
                 <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{s.desc}</p>
               </div>
             ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
