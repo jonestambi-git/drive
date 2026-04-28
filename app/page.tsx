@@ -8,6 +8,7 @@ import {
   Smartphone, CreditCard, Users, TrendingUp, Award,
   Menu, X, ChevronRight,
 } from "lucide-react";
+import FadeInSection from "@/components/ui/FadeInSection";
 
 
 /* ─── Data ─────────────────────────────────────────────────── */
@@ -686,32 +687,35 @@ export default function Home() {
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "64px 0" }}>
         <div className="sp-container">
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Choose your ride</p>
-            <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", marginTop: "8px" }}>
-              A ride for every moment
-            </h2>
-          </div>
+          <FadeInSection direction="up">
+            <div style={{ textAlign: "center", marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Choose your ride</p>
+              <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", marginTop: "8px" }}>
+                A ride for every moment
+              </h2>
+            </div>
+          </FadeInSection>
 
           <div className="sp-grid-4" style={{ gap: "16px" }}>
             {rideTypes.map((r, i) => {
               const Icon = r.icon;
               return (
-                <div
-                  key={r.label}
-                  className="sp-card-elevated"
-                  style={{ padding: "24px", cursor: "pointer" }}
-                >
-                  <div style={{ width: "48px", height: "48px", borderRadius: "var(--radius-card)", background: i === 0 ? "var(--accent-dim)" : "var(--bg-base)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "16px" }}>
-                    <Icon size={22} style={{ color: i === 0 ? "var(--accent)" : "var(--text-muted)" }} />
+                <FadeInSection key={r.label} direction="up" delay={i * 0.08}>
+                  <div
+                    className="sp-card-elevated"
+                    style={{ padding: "24px", cursor: "pointer", height: "100%" }}
+                  >
+                    <div style={{ width: "48px", height: "48px", borderRadius: "var(--radius-card)", background: i === 0 ? "var(--accent-dim)" : "var(--bg-base)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "16px" }}>
+                      <Icon size={22} style={{ color: i === 0 ? "var(--accent)" : "var(--text-muted)" }} />
+                    </div>
+                    <h3 style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-base)", marginBottom: "6px" }}>{r.label}</h3>
+                    <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "16px", lineHeight: 1.5 }}>{r.desc}</p>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: "0.6875rem", color: "var(--accent)", fontWeight: 700 }}>{r.eta}</span>
+                      <span style={{ fontSize: "0.6875rem", color: "var(--text-muted)" }}>{r.price}</span>
+                    </div>
                   </div>
-                  <h3 style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-base)", marginBottom: "6px" }}>{r.label}</h3>
-                  <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "16px", lineHeight: 1.5 }}>{r.desc}</p>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "0.6875rem", color: "var(--accent)", fontWeight: 700 }}>{r.eta}</span>
-                    <span style={{ fontSize: "0.6875rem", color: "var(--text-muted)" }}>{r.price}</span>
-                  </div>
-                </div>
+                </FadeInSection>
               );
             })}
           </div>
@@ -723,28 +727,31 @@ export default function Home() {
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "96px 0" }}>
         <div className="sp-container">
-          <div style={{ marginBottom: "56px" }}>
-            <p className="sp-section-eyebrow">Why Drive</p>
-            <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px" }}>
-              Everything you need in a ride
-            </h2>
-          </div>
+          <FadeInSection direction="up">
+            <div style={{ marginBottom: "56px" }}>
+              <p className="sp-section-eyebrow">Why Drive</p>
+              <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px" }}>
+                Everything you need in a ride
+              </h2>
+            </div>
+          </FadeInSection>
 
           <div className="sp-grid-3" style={{ gap: "2px", background: "var(--border-faint)", borderRadius: "var(--radius-card)", overflow: "hidden" }}>
-            {features.map((f) => {
+            {features.map((f, i) => {
               const Icon = f.icon;
               return (
-                <div
-                  key={f.title}
-                  className="sp-feature-card"
-                  style={{ flexDirection: "column", gap: "12px", padding: "28px 24px", borderRadius: 0 }}
-                >
-                  <div className="sp-feature-card__icon">
-                    <Icon size={20} />
+                <FadeInSection key={f.title} direction="up" delay={i * 0.07}>
+                  <div
+                    className="sp-feature-card"
+                    style={{ flexDirection: "column", gap: "12px", padding: "28px 24px", borderRadius: 0, height: "100%" }}
+                  >
+                    <div className="sp-feature-card__icon">
+                      <Icon size={20} />
+                    </div>
+                    <h3 style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-base)" }}>{f.title}</h3>
+                    <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{f.desc}</p>
                   </div>
-                  <h3 style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-base)" }}>{f.title}</h3>
-                  <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{f.desc}</p>
-                </div>
+                </FadeInSection>
               );
             })}
           </div>
@@ -756,22 +763,26 @@ export default function Home() {
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "96px 0" }}>
         <div className="sp-container">
-          <div style={{ textAlign: "center", marginBottom: "64px" }}>
-            <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>How it works</p>
-            <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", marginTop: "8px" }}>
-              Ride in 4 simple steps
-            </h2>
-          </div>
+          <FadeInSection direction="up">
+            <div style={{ textAlign: "center", marginBottom: "64px" }}>
+              <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>How it works</p>
+              <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", marginTop: "8px" }}>
+                Ride in 4 simple steps
+              </h2>
+            </div>
+          </FadeInSection>
 
           <div className="sp-steps-grid">
             {steps.map((s, i) => (
-              <div key={s.n} className="sp-step">
-                <div className={`sp-step__number${i === 1 ? " sp-step__number--active" : ""}`}>
-                  {s.n}
+              <FadeInSection key={s.n} direction="up" delay={i * 0.1}>
+                <div className="sp-step">
+                  <div className={`sp-step__number${i === 1 ? " sp-step__number--active" : ""}`}>
+                    {s.n}
+                  </div>
+                  <h3 style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-base)", marginBottom: "8px" }}>{s.title}</h3>
+                  <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{s.desc}</p>
                 </div>
-                <h3 style={{ fontSize: "0.875rem", fontWeight: 700, color: "var(--text-base)", marginBottom: "8px" }}>{s.title}</h3>
-                <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{s.desc}</p>
-              </div>
+              </FadeInSection>
             ))}
           </div>
         </div>
@@ -781,24 +792,26 @@ export default function Home() {
           STATS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)" }}>
-        <div className="sp-container" style={{ padding: 0 }}>
-          <div className="sp-stats-grid">
-            {stats.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div key={s.label} className={`sp-stat-card${s.highlight ? " sp-stat-card--accent" : ""}`}>
-                  <div className="sp-stat-card__icon">
-                    <Icon size={20} />
+        <FadeInSection direction="up">
+          <div className="sp-container" style={{ padding: 0 }}>
+            <div className="sp-stats-grid">
+              {stats.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <div key={s.label} className={`sp-stat-card${s.highlight ? " sp-stat-card--accent" : ""}`}>
+                    <div className="sp-stat-card__icon">
+                      <Icon size={20} />
+                    </div>
+                    <div>
+                      <p className="sp-stat-card__value">{s.value}</p>
+                      <p className="sp-stat-card__label">{s.label}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="sp-stat-card__value">{s.value}</p>
-                    <p className="sp-stat-card__label">{s.label}</p>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
@@ -808,49 +821,53 @@ export default function Home() {
         <div className="sp-container">
           <div className="sp-grid-2" style={{ gap: "24px", alignItems: "stretch" }}>
 
-            {/* Rider card */}
-            <div className="sp-cta-card" style={{ background: "var(--bg-elevated)", borderRadius: "var(--radius-panel)", padding: "48px", display: "flex", flexDirection: "column", gap: "20px", boxShadow: "var(--shadow-medium)" }}>
-              <span style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--accent)" }}>For riders</span>
-              <h2 style={{ fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)", fontWeight: 900, color: "var(--text-base)", lineHeight: 1.1 }}>
-                Ready to ride smarter?
-              </h2>
-              <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.75 }}>
-                Join millions of riders who trust Drive every day. Sign up free and book your first ride in under a minute.
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                {["No subscription required", "Upfront pricing always", "Cancel anytime, no fees"].map((p) => (
-                  <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "0.8125rem", color: "var(--text-muted)" }}>
-                    <CheckCircle2 size={15} style={{ color: "var(--accent)", flexShrink: 0 }} />
-                    {p}
-                  </div>
-                ))}
+            <FadeInSection direction="left" delay={0}>
+              {/* Rider card */}
+              <div className="sp-cta-card" style={{ background: "var(--bg-elevated)", borderRadius: "var(--radius-panel)", padding: "48px", display: "flex", flexDirection: "column", gap: "20px", boxShadow: "var(--shadow-medium)", height: "100%" }}>
+                <span style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--accent)" }}>For riders</span>
+                <h2 style={{ fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)", fontWeight: 900, color: "var(--text-base)", lineHeight: 1.1 }}>
+                  Ready to ride smarter?
+                </h2>
+                <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.75 }}>
+                  Join millions of riders who trust Drive every day. Sign up free and book your first ride in under a minute.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {["No subscription required", "Upfront pricing always", "Cancel anytime, no fees"].map((p) => (
+                    <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "0.8125rem", color: "var(--text-muted)" }}>
+                      <CheckCircle2 size={15} style={{ color: "var(--accent)", flexShrink: 0 }} />
+                      {p}
+                    </div>
+                  ))}
+                </div>
+                <Link href="/auth/register" className="sp-btn-base sp-btn-primary" style={{ padding: "14px 28px", marginTop: "8px", width: "fit-content" }}>
+                  Get started free <ArrowRight size={15} />
+                </Link>
               </div>
-              <Link href="/auth/register" className="sp-btn-base sp-btn-primary" style={{ padding: "14px 28px", marginTop: "8px", width: "fit-content" }}>
-                Get started free <ArrowRight size={15} />
-              </Link>
-            </div>
+            </FadeInSection>
 
-            {/* Driver card */}
-            <div className="sp-cta-card" style={{ background: "var(--accent)", borderRadius: "var(--radius-panel)", padding: "48px", display: "flex", flexDirection: "column", gap: "20px", boxShadow: "var(--shadow-heavy)" }}>
-              <span style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)" }}>For drivers</span>
-              <h2 style={{ fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)", fontWeight: 900, color: "var(--text-on-accent)", lineHeight: 1.1 }}>
-                Earn on your schedule
-              </h2>
-              <p style={{ fontSize: "0.8125rem", color: "rgba(0,0,0,0.65)", lineHeight: 1.75 }}>
-                Become a Drive partner and earn competitive income whenever you want. Full flexibility, full control.
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                {["Set your own hours", "Weekly direct payouts", "In-app driver support"].map((p) => (
-                  <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "0.8125rem", color: "rgba(0,0,0,0.65)" }}>
-                    <CheckCircle2 size={15} style={{ color: "rgba(0,0,0,0.5)", flexShrink: 0 }} />
-                    {p}
-                  </div>
-                ))}
+            <FadeInSection direction="right" delay={0.1}>
+              {/* Driver card */}
+              <div className="sp-cta-card" style={{ background: "var(--accent)", borderRadius: "var(--radius-panel)", padding: "48px", display: "flex", flexDirection: "column", gap: "20px", boxShadow: "var(--shadow-heavy)", height: "100%" }}>
+                <span style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(0,0,0,0.5)" }}>For drivers</span>
+                <h2 style={{ fontSize: "clamp(1.125rem, 2.5vw, 1.5rem)", fontWeight: 900, color: "var(--text-on-accent)", lineHeight: 1.1 }}>
+                  Earn on your schedule
+                </h2>
+                <p style={{ fontSize: "0.8125rem", color: "rgba(0,0,0,0.65)", lineHeight: 1.75 }}>
+                  Become a Drive partner and earn competitive income whenever you want. Full flexibility, full control.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {["Set your own hours", "Weekly direct payouts", "In-app driver support"].map((p) => (
+                    <div key={p} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "0.8125rem", color: "rgba(0,0,0,0.65)" }}>
+                      <CheckCircle2 size={15} style={{ color: "rgba(0,0,0,0.5)", flexShrink: 0 }} />
+                      {p}
+                    </div>
+                  ))}
+                </div>
+                <Link href="/auth/register?role=driver" className="sp-btn-base" style={{ background: "var(--bg-base)", color: "var(--text-base)", padding: "11px 24px", borderRadius: "var(--radius-pill-lg)", marginTop: "8px", width: "fit-content", letterSpacing: "1.4px", textTransform: "uppercase", fontSize: "0.8125rem", fontWeight: 700 }}>
+                  Drive with us <ArrowRight size={15} />
+                </Link>
               </div>
-              <Link href="/auth/register?role=driver" className="sp-btn-base" style={{ background: "var(--bg-base)", color: "var(--text-base)", padding: "11px 24px", borderRadius: "var(--radius-pill-lg)", marginTop: "8px", width: "fit-content", letterSpacing: "1.4px", textTransform: "uppercase", fontSize: "0.8125rem", fontWeight: 700 }}>
-                Drive with us <ArrowRight size={15} />
-              </Link>
-            </div>
+            </FadeInSection>
 
           </div>
         </div>
@@ -861,34 +878,38 @@ export default function Home() {
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "96px 0" }}>
         <div className="sp-container">
-          <div style={{ marginBottom: "56px" }}>
-            <p className="sp-section-eyebrow">Riders say</p>
-            <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", marginTop: "8px" }}>
-              Trusted by millions
-            </h2>
-          </div>
+          <FadeInSection direction="up">
+            <div style={{ marginBottom: "56px" }}>
+              <p className="sp-section-eyebrow">Riders say</p>
+              <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", marginTop: "8px" }}>
+                Trusted by millions
+              </h2>
+            </div>
+          </FadeInSection>
 
           <div className="sp-grid-3">
-            {testimonials.map((t) => (
-              <div key={t.name} className="sp-card-elevated" style={{ padding: "28px" }}>
-                <div style={{ display: "flex", gap: "3px", marginBottom: "16px" }}>
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} size={13} style={{ color: "var(--accent)", fill: "var(--accent)" }} />
-                  ))}
-                </div>
-                <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.75, fontStyle: "italic", marginBottom: "20px" }}>
-                  &ldquo;{t.body}&rdquo;
-                </p>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  <div style={{ width: "34px", height: "34px", borderRadius: "50%", background: "var(--accent-dim)", border: "1px solid rgba(30,215,96,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.625rem", fontWeight: 700, color: "var(--accent)", flexShrink: 0 }}>
-                    {t.initials}
+            {testimonials.map((t, i) => (
+              <FadeInSection key={t.name} direction="up" delay={i * 0.1}>
+                <div className="sp-card-elevated" style={{ padding: "28px", height: "100%" }}>
+                  <div style={{ display: "flex", gap: "3px", marginBottom: "16px" }}>
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <Star key={i} size={13} style={{ color: "var(--accent)", fill: "var(--accent)" }} />
+                    ))}
                   </div>
-                  <div>
-                    <p style={{ fontSize: "0.8125rem", fontWeight: 700, color: "var(--text-base)" }}>{t.name}</p>
-                    <p style={{ fontSize: "0.6875rem", color: "var(--text-muted)" }}>{t.role}</p>
+                  <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: 1.75, fontStyle: "italic", marginBottom: "20px" }}>
+                    &ldquo;{t.body}&rdquo;
+                  </p>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <div style={{ width: "34px", height: "34px", borderRadius: "50%", background: "var(--accent-dim)", border: "1px solid rgba(224,49,16,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.625rem", fontWeight: 700, color: "var(--accent)", flexShrink: 0 }}>
+                      {t.initials}
+                    </div>
+                    <div>
+                      <p style={{ fontSize: "0.8125rem", fontWeight: 700, color: "var(--text-base)" }}>{t.name}</p>
+                      <p style={{ fontSize: "0.6875rem", color: "var(--text-muted)" }}>{t.role}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </FadeInSection>
             ))}
           </div>
         </div>
@@ -898,72 +919,76 @@ export default function Home() {
           APP DOWNLOAD CTA
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", padding: "96px 0" }}>
-        <div className="sp-container" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "24px" }}>
-          <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Get the app</p>
-          <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", maxWidth: "560px", lineHeight: 1.1 }}>
-            Download Drive and start riding today
-          </h2>
-          <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", maxWidth: "440px", lineHeight: 1.75 }}>
-            Available on iOS and Android. Book your first ride in under 30 seconds.
-          </p>
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
-            <Link href="/auth/register" className="sp-btn-base sp-btn-primary" style={{ padding: "11px 24px", fontSize: "0.8125rem" }}>
-              <Smartphone size={14} /> Download for iOS
-            </Link>
-            <Link href="/auth/register" className="sp-btn-base sp-btn-dark" style={{ padding: "11px 24px", fontSize: "0.8125rem" }}>
-              <Smartphone size={14} /> Download for Android
-            </Link>
+        <FadeInSection direction="up">
+          <div className="sp-container" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: "24px" }}>
+            <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Get the app</p>
+            <h2 style={{ fontSize: "clamp(1.25rem, 3vw, 1.75rem)", fontWeight: 900, color: "var(--text-base)", maxWidth: "560px", lineHeight: 1.1 }}>
+              Download Drive and start riding today
+            </h2>
+            <p style={{ fontSize: "0.8125rem", color: "var(--text-muted)", maxWidth: "440px", lineHeight: 1.75 }}>
+              Available on iOS and Android. Book your first ride in under 30 seconds.
+            </p>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
+              <Link href="/auth/register" className="sp-btn-base sp-btn-primary" style={{ padding: "11px 24px", fontSize: "0.8125rem" }}>
+                <Smartphone size={14} /> Download for iOS
+              </Link>
+              <Link href="/auth/register" className="sp-btn-base sp-btn-dark" style={{ padding: "11px 24px", fontSize: "0.8125rem" }}>
+                <Smartphone size={14} /> Download for Android
+              </Link>
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           FOOTER
       ══════════════════════════════════════════ */}
       <footer className="sp-footer">
-        <div className="sp-container">
-          <div className="sp-footer__grid">
-            {/* Brand */}
-            <div>
-              <Link href="/" className="sp-logo">
-                <div className="sp-logo__mark">D</div>
-                <span className="sp-logo__text">Drive</span>
-              </Link>
-              <p className="sp-footer__brand-desc">
-                Safe, fast, and reliable rides at your fingertips. Available in 120+ cities worldwide.
-              </p>
-              <div className="sp-footer__socials">
-                {["𝕏", "f", "in", "ig"].map((s) => (
-                  <div key={s} className="sp-footer__social-btn">{s}</div>
-                ))}
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div className="sp-footer__grid">
+              {/* Brand */}
+              <div>
+                <Link href="/" className="sp-logo">
+                  <div className="sp-logo__mark">D</div>
+                  <span className="sp-logo__text">Drive</span>
+                </Link>
+                <p className="sp-footer__brand-desc">
+                  Safe, fast, and reliable rides at your fingertips. Available in 120+ cities worldwide.
+                </p>
+                <div className="sp-footer__socials">
+                  {["𝕏", "f", "in", "ig"].map((s) => (
+                    <div key={s} className="sp-footer__social-btn">{s}</div>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {[
-              { heading: "Company",  links: ["About us", "Careers", "Press", "Blog"] },
-              { heading: "Riders",   links: ["How it works", "Safety", "Cities", "Pricing"] },
-              { heading: "Drivers",  links: ["Drive with us", "Requirements", "Earnings", "Support"] },
-            ].map((col) => (
-              <div key={col.heading}>
-                <h4 className="sp-footer__col-title">{col.heading}</h4>
-                {col.links.map((l) => (
-                  <span key={l} className="sp-footer__link">{l}</span>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          <hr className="sp-separator" />
-
-          <div className="sp-footer__bottom" style={{ marginTop: "24px" }}>
-            <p>© {new Date().getFullYear()} Drive Technologies Inc. All rights reserved.</p>
-            <div className="sp-footer__legal">
-              {["Privacy Policy", "Terms of Service", "Cookie Settings"].map((l) => (
-                <span key={l}>{l}</span>
+              {[
+                { heading: "Company",  links: ["About us", "Careers", "Press", "Blog"] },
+                { heading: "Riders",   links: ["How it works", "Safety", "Cities", "Pricing"] },
+                { heading: "Drivers",  links: ["Drive with us", "Requirements", "Earnings", "Support"] },
+              ].map((col) => (
+                <div key={col.heading}>
+                  <h4 className="sp-footer__col-title">{col.heading}</h4>
+                  {col.links.map((l) => (
+                    <span key={l} className="sp-footer__link">{l}</span>
+                  ))}
+                </div>
               ))}
             </div>
+
+            <hr className="sp-separator" />
+
+            <div className="sp-footer__bottom" style={{ marginTop: "24px" }}>
+              <p>© {new Date().getFullYear()} Drive Technologies Inc. All rights reserved.</p>
+              <div className="sp-footer__legal">
+                {["Privacy Policy", "Terms of Service", "Cookie Settings"].map((l) => (
+                  <span key={l}>{l}</span>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </footer>
 
     </div>

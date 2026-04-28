@@ -1516,6 +1516,16 @@ table { border-collapse: collapse; }
 
   /* Section eyebrow — center on mobile */
   .sp-section-eyebrow { justify-content: center; }
+
+  /* Reduce section padding on mobile */
+  section[style*="padding: 96px"] {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  section[style*="padding: 64px"] {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
 }
 
 /* ── Tablet 640–1023px ── */
