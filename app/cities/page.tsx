@@ -6,6 +6,7 @@ import {
   ArrowRight, MapPin, Users, Star, TrendingUp,
   Zap, Menu, X,
 } from "lucide-react";
+import FadeInSection from "@/components/ui/FadeInSection";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 
@@ -184,15 +185,16 @@ export default function CitiesPage() {
           ACTIVE CITIES GRID
       ══════════════════════════════════════════ */}
       <section id="cities-list" style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Active cities</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
-              Ride now in these cities
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Active cities</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
+                Ride now in these cities
+              </h2>
+            </div>
 
-          <div className="sp-grid-4" style={{ gap: "16px" }}>
+            <div className="sp-grid-4" style={{ gap: "16px" }}>
             {activeCities.map((city) => (
               <div
                 key={city.name}
@@ -222,23 +224,25 @@ export default function CitiesPage() {
                 </Link>
               </div>
             ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           COMING SOON
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Coming soon</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
-              Expanding to new cities
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Coming soon</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
+                Expanding to new cities
+              </h2>
+            </div>
 
-          <div className="sp-grid-4" style={{ gap: "16px" }}>
+            <div className="sp-grid-4" style={{ gap: "16px" }}>
             {comingSoonCities.map((city) => (
               <div
                 key={city.name}
@@ -260,8 +264,9 @@ export default function CitiesPage() {
                 </button>
               </div>
             ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
@@ -306,15 +311,16 @@ export default function CitiesPage() {
           CITY STATS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">City highlights</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              Cities leading the way
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">City highlights</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                Cities leading the way
+              </h2>
+            </div>
 
-          <div className="sp-grid-3" style={{ gap: "16px" }}>
+            <div className="sp-grid-3" style={{ gap: "16px" }}>
             {cityStats.map((c) => {
               const Icon = c.icon;
               return (
@@ -340,6 +346,7 @@ export default function CitiesPage() {
             })}
           </div>
         </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════

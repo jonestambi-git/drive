@@ -1,13 +1,13 @@
 "use client";
 
-
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import {
   ArrowRight, CheckCircle2, Star, Shield, Clock,
   CreditCard, Smartphone, TrendingUp, Users, Award,
-  Car, ChevronRight, Menu, X, MapPin, Zap,
+  Car, ChevronRight, Menu, X, MapPin, Zap, Navigation,
 } from "lucide-react";
+import FadeInSection from "@/components/ui/FadeInSection";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 
@@ -119,18 +119,91 @@ export default function DrivePage() {
           </div>
         </div>
 
-        {menuOpen && (
-          <div style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", padding: "16px 24px" }}>
-            {navLinks.map((item) => (
-              <div key={item} style={{ padding: "12px 0", fontSize: "0.875rem", color: "var(--text-muted)", borderBottom: "1px solid var(--border-faint)", cursor: "pointer" }}>{item}</div>
-            ))}
-            <div style={{ display: "flex", gap: "12px", marginTop: "16px" }}>
-              <Link href="/auth/login" className="sp-btn-base sp-btn-outline" style={{ flex: 1, justifyContent: "center", padding: "10px", letterSpacing: "0.14px", textTransform: "none" }}>Log in</Link>
-              <Link href="/auth/register?role=driver" className="sp-btn-base sp-btn-primary" style={{ flex: 1, justifyContent: "center", padding: "10px" }}>Start driving</Link>
+      </header>
+
+      {/* ══════════════════════════════════════════
+          MOBILE MENU — full-screen slide-in panel
+      ══════════════════════════════════════════ */}
+      {menuOpen && (
+        <>
+          <div
+            onClick={() => setMenuOpen(false)}
+            style={{
+              position: "fixed", inset: 0, zIndex: 998,
+              background: "rgba(0,0,0,0.6)",
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+              animation: "mmFadeIn 0.25s ease forwards",
+            }}
+          />
+          <div style={{
+            position: "fixed", top: 0, right: 0, bottom: 0,
+            width: "min(320px, 88vw)",
+            zIndex: 999,
+            background: "#111",
+            display: "flex", flexDirection: "column",
+            animation: "mmSlideIn 0.3s cubic-bezier(0.4,0,0.2,1) forwards",
+            boxShadow: "-8px 0 40px rgba(0,0,0,0.6)",
+            overflowY: "auto",
+          }}>
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "20px 20px 16px",
+              borderBottom: "1px solid rgba(255,255,255,0.07)",
+            }}>
+              <Link href="/" onClick={() => setMenuOpen(false)} style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
+                <div style={{ width: "30px", height: "30px", borderRadius: "50%", background: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: "0.75rem", color: "#fff" }}>D</div>
+                <span style={{ fontSize: "1rem", fontWeight: 900, color: "#fff", letterSpacing: "-0.01em" }}>Drive</span>
+              </Link>
+              <button
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+                style={{ width: "34px", height: "34px", borderRadius: "50%", background: "rgba(255,255,255,0.08)", border: "none", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: "#fff" }}
+              >
+                <X size={16} />
+              </button>
+            </div>
+            <nav style={{ flex: 1, padding: "12px 12px 0" }}>
+              {[
+                { label: "Ride",     href: "/auth/register", icon: Car,        desc: "Book a ride instantly"    },
+                { label: "Drive",    href: "/drive",         icon: Navigation,  desc: "Become a driver partner"  },
+                { label: "Business", href: "/business",      icon: TrendingUp,  desc: "Corporate ride solutions" },
+                { label: "Safety",   href: "/safety",        icon: Shield,      desc: "How we keep you safe"     },
+                { label: "Cities",   href: "/cities",        icon: MapPin,      desc: "Available in 120+ cities" },
+              ].map(({ label, href, icon: Icon, desc }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  style={{ display: "flex", alignItems: "center", gap: "14px", padding: "13px 12px", borderRadius: "12px", textDecoration: "none", marginBottom: "4px" }}
+                >
+                  <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "rgba(224,49,16,0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <Icon size={18} style={{ color: "var(--accent)" }} />
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <p style={{ fontSize: "0.9375rem", fontWeight: 600, color: "#fff", lineHeight: 1, margin: 0 }}>{label}</p>
+                    <p style={{ fontSize: "0.6875rem", color: "#6a6a6a", marginTop: "3px", margin: 0 }}>{desc}</p>
+                  </div>
+                  <ChevronRight size={15} style={{ color: "#4d4d4d", flexShrink: 0 }} />
+                </Link>
+              ))}
+            </nav>
+            <div style={{ height: "1px", background: "rgba(255,255,255,0.07)", margin: "16px 20px 0" }} />
+            <div style={{ padding: "16px 20px 32px", display: "flex", flexDirection: "column", gap: "10px" }}>
+              <Link href="/auth/register?role=driver" onClick={() => setMenuOpen(false)} className="sp-btn-base sp-btn-primary" style={{ width: "100%", justifyContent: "center", padding: "14px", fontSize: "0.9375rem", letterSpacing: "0.5px", textTransform: "none" }}>
+                Start driving
+              </Link>
+              <Link href="/auth/login" onClick={() => setMenuOpen(false)} className="sp-btn-base sp-btn-outline" style={{ width: "100%", justifyContent: "center", padding: "13px", fontSize: "0.9375rem", letterSpacing: "0.14px", textTransform: "none" }}>
+                Log in
+              </Link>
             </div>
           </div>
-        )}
-      </header>
+          <style>{`
+            @keyframes mmFadeIn { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes mmSlideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+          `}</style>
+        </>
+      )}
 
       {/* ══════════════════════════════════════════
           HERO
@@ -193,30 +266,33 @@ export default function DrivePage() {
           STATS BAR
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)" }}>
-        <div className="sp-container" style={{ padding: 0 }}>
-          <div className="sp-stats-grid">
-            {stats.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div key={s.label} className={`sp-stat-card${s.highlight ? " sp-stat-card--accent" : ""}`}>
-                  <div className="sp-stat-card__icon"><Icon size={20} /></div>
-                  <div>
-                    <p className="sp-stat-card__value">{s.value}</p>
-                    <p className="sp-stat-card__label">{s.label}</p>
+        <FadeInSection direction="up">
+          <div className="sp-container" style={{ padding: 0 }}>
+            <div className="sp-stats-grid">
+              {stats.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <div key={s.label} className={`sp-stat-card${s.highlight ? " sp-stat-card--accent" : ""}`}>
+                    <div className="sp-stat-card__icon"><Icon size={20} /></div>
+                    <div>
+                      <p className="sp-stat-card__value">{s.value}</p>
+                      <p className="sp-stat-card__label">{s.label}</p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           EARNINGS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div className="sp-grid-2" style={{ alignItems: "center" }}>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div className="sp-grid-2" style={{ alignItems: "center" }}>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               <p className="sp-section-eyebrow">Earnings potential</p>
@@ -251,22 +327,23 @@ export default function DrivePage() {
               ))}
             </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           PERKS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Driver benefits</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
-              Everything you need to succeed
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Driver benefits</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
+                Everything you need to succeed
+              </h2>
+            </div>
 
-          <div className="sp-grid-3" style={{ gap: "2px", background: "var(--border-faint)", borderRadius: "var(--radius-card)", overflow: "hidden" }}>
+            <div className="sp-grid-3" style={{ gap: "2px", background: "var(--border-faint)", borderRadius: "var(--radius-card)", overflow: "hidden" }}>
             {perks.map((p) => {
               const Icon = p.icon;
               return (
@@ -277,23 +354,25 @@ export default function DrivePage() {
                 </div>
               );
             })}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           HOW IT WORKS
       ══════════════════════════════════════════ */}
       <section id="how-it-works" style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ textAlign: "center", marginBottom: "56px" }}>
-            <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Getting started</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              On the road in 4 steps
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ textAlign: "center", marginBottom: "56px" }}>
+              <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Getting started</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                On the road in 4 steps
+              </h2>
+            </div>
 
-          <div className="sp-steps-grid">
+            <div className="sp-steps-grid">
             {steps.map((s, i) => (
               <div key={s.n} className="sp-step">
                 <div className={`sp-step__number${i === 0 ? " sp-step__number--active" : ""}`}>{s.n}</div>
@@ -309,15 +388,16 @@ export default function DrivePage() {
           REQUIREMENTS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Requirements</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              What you need to drive
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ textAlign: "center", marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Requirements</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                What you need to drive
+              </h2>
+            </div>
 
-          <div className="sp-grid-4" style={{ gap: "16px" }}>
+            <div className="sp-grid-4" style={{ gap: "16px" }}>
             {requirements.map((r) => {
               const Icon = r.icon;
               return (
@@ -332,21 +412,23 @@ export default function DrivePage() {
             })}
           </div>
         </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           TESTIMONIALS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Driver stories</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              Hear from our drivers
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Driver stories</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                Hear from our drivers
+              </h2>
+            </div>
 
-          <div className="sp-grid-3">
+            <div className="sp-grid-3">
             {testimonials.map((t) => (
               <div key={t.name} className="sp-card-elevated" style={{ padding: "28px", display: "flex", flexDirection: "column", gap: "16px" }}>
                 <div style={{ display: "flex", gap: "3px" }}>
@@ -373,8 +455,9 @@ export default function DrivePage() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════

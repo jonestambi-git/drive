@@ -6,6 +6,7 @@ import {
   ArrowRight, CheckCircle2, Star, Shield, CreditCard,
   TrendingUp, Users, Zap, Menu, X,
 } from "lucide-react";
+import FadeInSection from "@/components/ui/FadeInSection";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 
@@ -234,15 +235,16 @@ export default function BusinessPage() {
           FEATURES GRID
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Platform features</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
-              Everything your business needs
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Platform features</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
+                Everything your business needs
+              </h2>
+            </div>
 
-          <div className="sp-grid-3" style={{ gap: "2px", background: "var(--border-faint)", borderRadius: "var(--radius-card)", overflow: "hidden" }}>
+            <div className="sp-grid-3" style={{ gap: "2px", background: "var(--border-faint)", borderRadius: "var(--radius-card)", overflow: "hidden" }}>
             {features.map((f) => {
               const Icon = f.icon;
               return (
@@ -255,21 +257,23 @@ export default function BusinessPage() {
             })}
           </div>
         </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           HOW IT WORKS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ textAlign: "center", marginBottom: "56px" }}>
-            <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Getting started</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              Up and running in 4 steps
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ textAlign: "center", marginBottom: "56px" }}>
+              <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Getting started</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                Up and running in 4 steps
+              </h2>
+            </div>
 
-          <div className="sp-steps-grid">
+            <div className="sp-steps-grid">
             {steps.map((s, i) => (
               <div key={s.n} className="sp-step">
                 <div className={`sp-step__number${i === 0 ? " sp-step__number--active" : ""}`}>{s.n}</div>
@@ -277,26 +281,28 @@ export default function BusinessPage() {
                 <p style={{ fontSize: "0.75rem", color: "var(--text-muted)", lineHeight: 1.7 }}>{s.desc}</p>
               </div>
             ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           PRICING
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ textAlign: "center", marginBottom: "56px" }}>
-            <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Pricing</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              Simple, transparent pricing
-            </h2>
-            <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", marginTop: "12px", maxWidth: "440px", margin: "12px auto 0" }}>
-              No hidden fees. No long-term contracts. Cancel or upgrade anytime.
-            </p>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ textAlign: "center", marginBottom: "56px" }}>
+              <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Pricing</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                Simple, transparent pricing
+              </h2>
+              <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", marginTop: "12px", maxWidth: "440px", margin: "12px auto 0" }}>
+                No hidden fees. No long-term contracts. Cancel or upgrade anytime.
+              </p>
+            </div>
 
-          <div className="sp-grid-3" style={{ gap: "16px", alignItems: "stretch" }}>
+            <div className="sp-grid-3" style={{ gap: "16px", alignItems: "stretch" }}>
             {pricingTiers.map((tier) => (
               <div
                 key={tier.name}
@@ -354,23 +360,25 @@ export default function BusinessPage() {
                 </Link>
               </div>
             ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           TESTIMONIALS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Customer stories</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              Trusted by leading companies
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Customer stories</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                Trusted by leading companies
+              </h2>
+            </div>
 
-          <div className="sp-grid-3">
+            <div className="sp-grid-3">
             {testimonials.map((t) => (
               <div key={t.name} className="sp-card-elevated" style={{ padding: "28px", display: "flex", flexDirection: "column", gap: "16px" }}>
                 <div style={{ display: "flex", gap: "3px" }}>
@@ -392,8 +400,9 @@ export default function BusinessPage() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════

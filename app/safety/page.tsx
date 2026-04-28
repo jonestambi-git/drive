@@ -6,6 +6,7 @@ import {
   ArrowRight, CheckCircle2, Star, Shield, Zap,
   Smartphone, CreditCard, MapPin, Users, Menu, X,
 } from "lucide-react";
+import FadeInSection from "@/components/ui/FadeInSection";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 
@@ -204,15 +205,16 @@ export default function SafetyPage() {
           SAFETY FEATURES
       ══════════════════════════════════════════ */}
       <section id="features" style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Safety features</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
-              Built-in protection on every ride
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Safety features</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
+                Built-in protection on every ride
+              </h2>
+            </div>
 
-          <div className="sp-grid-3" style={{ gap: "2px", background: "var(--border-faint)", borderRadius: "var(--radius-card)", overflow: "hidden" }}>
+            <div className="sp-grid-3" style={{ gap: "2px", background: "var(--border-faint)", borderRadius: "var(--radius-card)", overflow: "hidden" }}>
             {safetyFeatures.map((f) => {
               const Icon = f.icon;
               return (
@@ -225,14 +227,16 @@ export default function SafetyPage() {
             })}
           </div>
         </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           FOR RIDERS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div className="sp-grid-2" style={{ gap: "48px", alignItems: "center" }}>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div className="sp-grid-2" style={{ gap: "48px", alignItems: "center" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
               <p className="sp-section-eyebrow">For riders</p>
               <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", lineHeight: 1.1, margin: 0 }}>
@@ -263,14 +267,16 @@ export default function SafetyPage() {
             </div>
           </div>
         </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           FOR DRIVERS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div className="sp-grid-2" style={{ gap: "48px", alignItems: "center" }}>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div className="sp-grid-2" style={{ gap: "48px", alignItems: "center" }}>
             <div style={{ background: "var(--bg-elevated)", borderRadius: "var(--radius-panel)", height: "360px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "16px", border: "1px solid var(--border-faint)" }}>
               <div style={{ width: "72px", height: "72px", borderRadius: "var(--radius-card)", background: "var(--accent-dim)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <Users size={36} style={{ color: "var(--accent)" }} />
@@ -301,21 +307,23 @@ export default function SafetyPage() {
             </div>
           </div>
         </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           EMERGENCY FEATURES
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Emergency response</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              Help is always one tap away
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ textAlign: "center", marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow" style={{ justifyContent: "center" }}>Emergency response</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                Help is always one tap away
+              </h2>
+            </div>
 
-          <div className="sp-grid-3" style={{ gap: "16px" }}>
+            <div className="sp-grid-3" style={{ gap: "16px" }}>
             {emergencyFeatures.map((f) => {
               const Icon = f.icon;
               return (
@@ -330,21 +338,23 @@ export default function SafetyPage() {
             })}
           </div>
         </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           COMMUNITY STANDARDS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-surface)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Community standards</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
-              A community built on respect
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Community standards</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px", maxWidth: "480px", lineHeight: 1.1 }}>
+                A community built on respect
+              </h2>
+            </div>
 
-          <div className="sp-grid-3" style={{ gap: "16px" }}>
+            <div className="sp-grid-3" style={{ gap: "16px" }}>
             {communityStandards.map((c) => {
               const Icon = c.icon;
               return (
@@ -359,21 +369,23 @@ export default function SafetyPage() {
             })}
           </div>
         </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
           TESTIMONIALS
       ══════════════════════════════════════════ */}
       <section style={{ background: "var(--bg-base)", padding: "80px 0" }}>
-        <div className="sp-container">
-          <div style={{ marginBottom: "48px" }}>
-            <p className="sp-section-eyebrow">Rider stories</p>
-            <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
-              Safety you can feel
-            </h2>
-          </div>
+        <FadeInSection direction="up">
+          <div className="sp-container">
+            <div style={{ marginBottom: "48px" }}>
+              <p className="sp-section-eyebrow">Rider stories</p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", fontWeight: 700, color: "var(--text-base)", marginTop: "8px" }}>
+                Safety you can feel
+              </h2>
+            </div>
 
-          <div className="sp-grid-3">
+            <div className="sp-grid-3">
             {testimonials.map((t) => (
               <div key={t.name} className="sp-card-elevated" style={{ padding: "28px", display: "flex", flexDirection: "column", gap: "16px" }}>
                 <div style={{ display: "flex", gap: "3px" }}>
@@ -395,8 +407,9 @@ export default function SafetyPage() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
-        </div>
+        </FadeInSection>
       </section>
 
       {/* ══════════════════════════════════════════
