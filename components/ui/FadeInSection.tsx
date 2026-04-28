@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 interface FadeInSectionProps {
@@ -35,7 +35,7 @@ export default function FadeInSection({
       x: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: "easeOut" as const,
         delay,
       },
     },
