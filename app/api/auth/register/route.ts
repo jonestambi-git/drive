@@ -56,20 +56,12 @@ export async function POST(req: NextRequest) {
       userData.vehicleYear  = vehicleYear;
       userData.vehicleColor = vehicleColor;
       userData.licensePlate = licensePlate;
-      userData.driverStatus = "pending";
+      userData.driverStatus = "approved";
     }
 
     const user = await User.create(userData);
 
-    /* ── Driver → pending, no token ── */
-    if (userRole === "driver") {
-      return NextResponse.json(
-        { message: "Application submitted! We'll review your details and email you within 24 hours." },
-        { status: 201 }
-      );
-    }
-
-    /* ── Rider → return tokens ── */
+    /* ── Return tokens for both driver and rider ── */
     const payload = {
       userId:   user._id.toString(),
       fullName: user.fullName,

@@ -35,14 +35,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    /* ── Driver pending check ── */
-    if (user.role === "driver" && user.driverStatus === "pending") {
-      return NextResponse.json(
-        { message: "Your driver application is still under review. We'll email you once approved." },
-        { status: 403 }
-      );
-    }
-
     /* ── Sign tokens ── */
     const payload = {
       userId:   user._id.toString(),

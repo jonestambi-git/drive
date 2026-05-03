@@ -120,6 +120,10 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [slide, setSlide]       = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [pickupQ, setPickupQ] = useState("");
+  const [destQ, setDestQ] = useState("");
+  const [pickupFocus, setPickupFocus] = useState(false);
+  const [destFocus, setDestFocus] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -540,12 +544,16 @@ export default function Home() {
                       <input
                         type="text"
                         placeholder="Pickup location"
+                        value={pickupQ}
+                        onChange={(e) => setPickupQ(e.target.value)}
+                        onFocus={() => setPickupFocus(true)}
+                        onBlur={() => setTimeout(() => setPickupFocus(false), 160)}
                         style={{
                           width: "100%", background: "var(--bg-elevated)",
                           color: "var(--text-base)", fontSize: "0.875rem",
                           padding: "12px 12px 12px 34px", borderRadius: "10px",
-                          border: "1px solid rgba(255,255,255,0.1)", outline: "none",
-                          fontFamily: "var(--font-ui)",
+                          border: pickupFocus ? "1.5px solid var(--accent)" : "1px solid rgba(255,255,255,0.1)", outline: "none",
+                          fontFamily: "var(--font-ui)", transition: "all 0.15s",
                         }}
                       />
                     </div>
@@ -560,12 +568,16 @@ export default function Home() {
                       <input
                         type="text"
                         placeholder="Where are you going?"
+                        value={destQ}
+                        onChange={(e) => setDestQ(e.target.value)}
+                        onFocus={() => setDestFocus(true)}
+                        onBlur={() => setTimeout(() => setDestFocus(false), 160)}
                         style={{
                           width: "100%", background: "var(--bg-elevated)",
                           color: "var(--text-base)", fontSize: "0.875rem",
                           padding: "12px 12px 12px 34px", borderRadius: "10px",
-                          border: "1px solid rgba(255,255,255,0.1)", outline: "none",
-                          fontFamily: "var(--font-ui)",
+                          border: destFocus ? "1.5px solid var(--accent)" : "1px solid rgba(255,255,255,0.1)", outline: "none",
+                          fontFamily: "var(--font-ui)", transition: "all 0.15s",
                         }}
                       />
                     </div>
@@ -637,7 +649,11 @@ export default function Home() {
                     <input
                       type="text"
                       placeholder="Pickup location"
-                      style={{ width: "100%", background: "var(--bg-elevated)", color: "var(--text-base)", fontSize: "0.8125rem", padding: "12px 12px 12px 34px", borderRadius: "var(--radius-card)", border: "none", outline: "none", boxShadow: "var(--shadow-inset)" }}
+                      value={pickupQ}
+                      onChange={(e) => setPickupQ(e.target.value)}
+                      onFocus={() => setPickupFocus(true)}
+                      onBlur={() => setTimeout(() => setPickupFocus(false), 160)}
+                      style={{ width: "100%", background: pickupFocus ? "var(--bg-elevated)" : "var(--bg-elevated)", color: "var(--text-base)", fontSize: "0.8125rem", padding: "12px 12px 12px 34px", borderRadius: "var(--radius-card)", border: pickupFocus ? "1.5px solid var(--accent)" : "none", outline: "none", boxShadow: "var(--shadow-inset)", transition: "all 0.15s", fontFamily: "var(--font-ui)" }}
                     />
                   </div>
 
@@ -649,7 +665,11 @@ export default function Home() {
                     <input
                       type="text"
                       placeholder="Where are you going?"
-                      style={{ width: "100%", background: "var(--bg-elevated)", color: "var(--text-base)", fontSize: "0.8125rem", padding: "12px 12px 12px 34px", borderRadius: "var(--radius-card)", border: "none", outline: "none", boxShadow: "var(--shadow-inset)" }}
+                      value={destQ}
+                      onChange={(e) => setDestQ(e.target.value)}
+                      onFocus={() => setDestFocus(true)}
+                      onBlur={() => setTimeout(() => setDestFocus(false), 160)}
+                      style={{ width: "100%", background: destFocus ? "var(--bg-elevated)" : "var(--bg-elevated)", color: "var(--text-base)", fontSize: "0.8125rem", padding: "12px 12px 12px 34px", borderRadius: "var(--radius-card)", border: destFocus ? "1.5px solid var(--accent)" : "none", outline: "none", boxShadow: "var(--shadow-inset)", transition: "all 0.15s", fontFamily: "var(--font-ui)" }}
                     />
                   </div>
 

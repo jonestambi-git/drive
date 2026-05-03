@@ -1194,6 +1194,7 @@ table { border-collapse: collapse; }
   background: var(--bg-deep);
   border-top: 1px solid var(--border);
   padding: 64px 0 32px;
+  text-align: center;
 }
 
 .sp-footer__grid {
@@ -1201,6 +1202,10 @@ table { border-collapse: collapse; }
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 48px;
   margin-bottom: 48px;
+}
+
+.sp-footer__grid > div {
+  text-align: center;
 }
 
 .sp-footer__brand-desc {
@@ -1218,7 +1223,7 @@ table { border-collapse: collapse; }
 }
 
 .sp-footer__link {
-  display: block;
+  display: inline-block;
   font-size: 0.75rem;
   color: var(--text-muted);
   margin-bottom: 10px;
@@ -1231,6 +1236,7 @@ table { border-collapse: collapse; }
   display: flex;
   gap: 8px;
   margin-top: 16px;
+  justify-content: center;
 }
 
 .sp-footer__social-btn {
@@ -1257,8 +1263,9 @@ table { border-collapse: collapse; }
 
 .sp-footer__bottom {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
@@ -1269,6 +1276,8 @@ table { border-collapse: collapse; }
 .sp-footer__legal {
   display: flex;
   gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .sp-footer__legal span {
   cursor: pointer;

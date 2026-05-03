@@ -71,12 +71,9 @@ export default function RegisterPage() {
       const res  = await fetch(`/api/auth/register`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const data = await res.json();
       if (!res.ok) { setError(data.message || "Registration failed."); return; }
-      if (role === "driver") {
-        setSuccess("Application submitted! We'll review your details and email you within 24 hours.");
-      } else {
-        localStorage.setItem("accessToken", data.accessToken);
-        localStorage.setItem("refreshToken", data.refreshToken);
-        window.location.href = "/home";      }
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      window.location.href = role === "driver" ? "/driver/home" : "/home";
     } catch { setError("Network error. Please check your connection."); }
     finally { setLoading(false); }
   }
